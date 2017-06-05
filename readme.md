@@ -1,7 +1,15 @@
 
 ## lout-expo
 
-### Usage 
+kata to implement lights out with expo in android and ios.
+
+project initiality created with:
+
+``` lein new expo lout-expo
+
+
+
+### Usage (original template doc)
 
 #### Install Expo [XDE and mobile client](https://docs.expo.io/versions/v15.0.0/introduction/installation.html)
     If you don't want to use XDE (not IDE, it stands for Expo Development Tools), you can use [exp CLI](https://docs.expo.io/versions/v15.0.0/guides/exp-cli.html).
