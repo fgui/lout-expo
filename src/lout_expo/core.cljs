@@ -13,21 +13,24 @@
 (def touchable-highlight (r/adapt-react-class (.-TouchableHighlight ReactNative)))
 (def Alert (.-Alert ReactNative))
 
+(def FontAwesome (js/require "@expo/vector-icons/FontAwesome"))
+(def icon (r/adapt-react-class (aget FontAwesome "default")))
+
 (defn alert [title]
   (.alert Alert title))
 
 (defn light-component [val x y]
   ^{:key (str x "," y)}
   [view {:style {:background-color :white :flex 1}}
-   [touchable-highlight {:style {:background-color "#999"
+   [touchable-highlight {:style {:background-color (if (= 1 val) "#aaa" "#555")
                                  :margin 1
-                                 :padding 10
-                                 :border-radius 5
-                                 
+                                 :border-radius 3
                                  :flex 1}
                          :on-press #(dispatch [:toggle-light [x y]])}
-    [text {:style {:color :white
-                   :flex 1 :text-align :center :text-align-vertical :center :font-weight "bold"}} val]]
+    [icon {:style {:color (if (= 1 val) :yellow :white)
+                   :flex 1 :text-align :center :text-align-vertical :center :font-size 60}
+           :name "lightbulb-o"
+           }]]
    ])
 
 (defn row-component [row-lights y]
