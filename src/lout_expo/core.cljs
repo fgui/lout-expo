@@ -1,6 +1,7 @@
 (ns lout-expo.core
     (:require [reagent.core :as r :refer [atom]]
               [re-frame.core :refer [subscribe dispatch dispatch-sync]]
+              [lout-expo.lights :refer [win?]]
               [lout-expo.handlers]
               [lout-expo.subs]))
 
@@ -22,7 +23,7 @@
 (defn light-component [val x y]
   ^{:key (str x "," y)}
   [view {:style {:background-color :white :flex 1}}
-   [touchable-highlight {:style {:background-color (if (= 1 val) "#aaa" "#555")
+   [touchable-highlight {:style {:background-color (if (= 1 val) "#cca" "#555")
                                  :margin 1
                                  :border-radius 3
                                  :flex 1}
@@ -47,6 +48,10 @@
 (defn app-root []
   (let [lights (subscribe [:lights])]
     (fn []
+      (when (win? @lights)
+        (alert "Lights out!!!")
+        (dispatch [:initialize-db])
+        )
       [lights-component @lights]
       )))
 
