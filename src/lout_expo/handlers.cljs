@@ -2,7 +2,8 @@
   (:require
     [re-frame.core :refer [reg-event-db ->interceptor]]
     [clojure.spec.alpha :as s]
-    [lout-expo.db :as db :refer [app-db]]))
+    [lout-expo.db :as db :refer [app-db]]
+    [lout-expo.lights :refer [flip]]))
 
 ;; -- Interceptors ----------------------------------------------------------
 ;;
@@ -34,7 +35,7 @@
     app-db))
 
 (reg-event-db
-  :set-greeting
+  :toggle-light
   [validate-spec]
-  (fn [db [_ value]]
-    (assoc db :greeting value)))
+  (fn [db [_ position]]
+    (update db :lights flip position)))

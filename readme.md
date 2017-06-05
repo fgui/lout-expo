@@ -36,7 +36,7 @@ project initiality created with:
 
 ##### leiningen users
 ``` shell
-    lein figwheel
+    lein figwhee
 ```
 
 ##### boot users
